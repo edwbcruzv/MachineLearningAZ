@@ -1,52 +1,56 @@
 # =============================================================================
-# --------------------Plantilla de Pre-procesado--------------------
+# Random Forest Regression
 # =============================================================================
 
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
+# Estructura de los datos:tipos de empleados y el nivel 
+# de cada tipo de empleado y el salario correspondiente.
+# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
+# Filas :10
 # Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-dataset = read.csv('dataset.csv')
+#           |Position|Level| (vars independiente)
+#           |salary| (var_dependiente)
+dataset = read.csv('Position_Salaries.csv')
+dataset = dataset[,2:3]
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
 
 # =============================================================================
-# --------------------Dividiendo dataset en conjuntos--------------------
-# --------------------de entrenamiento y conjunto de testings-------------
-# =============================================================================
-# {se pueden modificar segun se necesite}
-# =============================================================================
-# Ajustar la regresion {sea cualquier tipo} con el dataset
+# Ajustar la regresion random forest con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
-type_regressor=lm(formula=Salary ~ .,data=dataset)
-summary(type_regressor)
+set.seed(1234)
+rf_regressor=randomForest(x=dataset[1],y=dataset$Salary,
+                          ntree=100)
+summary(rf_regressor)
 # =============================================================================
 # Prediccion de nuestros modelos (Resultados)
 # =============================================================================
-y_pred_type=predict(type_regressor,newdata=testing_data)
-print(y_pred_type)
+y_pred_tree=predict(rf_regressor,newdata=data.frame(Level=6.5))
+print(y_pred_tree)
 # =============================================================================
-# Visualizacion de los resultado: Modelo {type}
+# Visualizacion de los resultado: Modelo random forest
 # =============================================================================
 # Para mostrar la grafica de datos de entrenamiento
 
-# grid=seq(min(dataset$Level),max(dataset$Level),0.1)
+x_grid=seq(min(dataset$Level),max(dataset$Level),0.01)
 # Agregando componentes a mostrar
 ggplot()+
   # Dobujando los puntos de entrenamiento
   geom_point(aes(x=dataset$Level,y=dataset$Salary),
              color="red")+
   # Dobujando la linea de la prediccion, en base al entrenamiento
-  geom_line(aes(x=dataset$Level,y=predict(type_regressor,newdata=dataset)),
+  # geom_line(aes(x=dataset$Level,y=predict(rf_regressor,newdata=dataset)),
+            geom_line(aes(x=x_grid,
+                          y=predict(rf_regressor,
+                                    newdata=data.frame(Level=x_grid))),
             color="blue")+
-  ggtitle("Prediccion {type}  ")+
+  ggtitle("Prediccion usando regresion con arboles aleatorios de decision   ")+
   xlab("labelx")+
   ylab("labely")
+
 
 

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Date: Sat Feb 11 16:48:36 2023
+Date: Tue Feb 21 17:46:38 2023
 
 @author: edwin
 """
 
 # =============================================================================
-# Plantilla de Regresion Lineal Polinomica
+# Decission Tree Regression
 # =============================================================================
 # =============================================================================
 # --------------------Importando librerias--------------------
@@ -19,16 +19,19 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
+# Estructura de los datos:tipos de empleados y el nivel 
+# de cada tipo de empleado y el salario correspondiente.
+# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
+# Filas :10
 # Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
+#           |Position|Level| (vars independiente)
+#           |salary| (var_dependiente)
 
-dataset = pd.read_csv('dataset.csv') # {buscar el dataset}
+
+dataset = pd.read_csv('Position_Salaries.csv') # {buscar el dataset}
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna(s)...]
+#   tomamos [Todas las filas ,Solo la columna 1 (Leavel)]
 X = dataset.iloc[:,1:2].values # {se pueden modificar segun se necesite}
 
 # Variable dependiente:minuscula por ser un vector.
@@ -36,45 +39,29 @@ X = dataset.iloc[:,1:2].values # {se pueden modificar segun se necesite}
 y = dataset.iloc[:,2:3].values # {se pueden modificar segun se necesite}
 
 # =============================================================================
-# --------------------Dividiendo dataset en conjuntos--------------------
-# --------------------de entrenamiento y conjunto de testings-------------
-# =============================================================================
-# {se pueden modificar segun se necesite}
-# =============================================================================
-# Ajustar la regresion {sea cualquier tipo} con el dataset
+# Ajustar la regresion con arboles de decision con el dataset
 # =============================================================================
 
-# from sklearn.preprocessing import TypeRegression
-# type_regression=TypeRegression(degree=4) # se puede jugar con el grado
-# X_reg=type_regression.fit_transform(X)
+from sklearn.tree import DecisionTreeRegressor
+tree_regression=DecisionTreeRegressor(random_state=0)
+tree_regression.fit(X,y)
 
-# =============================================================================
+# ===== ========================================================================
 # Prediccion de nuestros modelos (Resultados)
 # =============================================================================
-y_pred=regression.predict()
+y_pred=tree_regression.predict([[6.5]])
 
 # =============================================================================
-# Visualizacion de los resultado: Modelo Polinomico
+# Visualizacion de los resultado: arboles de decision
 # =============================================================================
+
+X_grid =np.arange(min(X),max(X),0.1)
+X_grid=X_grid.reshape(len(X_grid),1)
+
 plt.scatter(X,y,color='red')
-plt.plot(X,regression.predict(),color='green')
-plt.title("Modelo Regresion {type}")
+# plt.plot(X_grid,tree_regression.predict(X_grid),color='green')
+plt.plot(X,tree_regression.predict(X),color='green')
+plt.title("Modelo Regresion por arboles de decision")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

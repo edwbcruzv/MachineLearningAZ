@@ -1,35 +1,32 @@
 # =============================================================================
-# --------------------Plantilla de Pre-procesado--------------------
+#  Support Vectorial Regression
 # =============================================================================
 
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
+# Estructura de los datos:tipos de empleados y el nivel 
+# de cada tipo de empleado y el salario correspondiente.
+# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
+# Filas :10
 # Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-dataset = read.csv('dataset.csv')
+#           |Position|Level| (vars independiente)
+#           |salary| (var_dependiente)
+dataset = read.csv('Position_Salaries.csv')
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
 
 # =============================================================================
-# --------------------Dividiendo dataset en conjuntos--------------------
-# --------------------de entrenamiento y conjunto de testings-------------
-# =============================================================================
-# {se pueden modificar segun se necesite}
-# =============================================================================
-# Ajustar la regresion {sea cualquier tipo} con el dataset
+# Ajustar la SVR con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
-type_regressor=lm(formula=Salary ~ .,data=dataset)
-summary(type_regressor)
+svr_regressor=svm(x = dataset$Level,y = dataset$Salary,kernel='radial')
+summary(svr_regressor)
 # =============================================================================
 # Prediccion de nuestros modelos (Resultados)
 # =============================================================================
-y_pred_type=predict(type_regressor,newdata=testing_data)
+y_pred_type=predict(svr_regressor,newdata=6.5)
 print(y_pred_type)
 # =============================================================================
 # Visualizacion de los resultado: Modelo {type}
@@ -43,10 +40,10 @@ ggplot()+
   geom_point(aes(x=dataset$Level,y=dataset$Salary),
              color="red")+
   # Dobujando la linea de la prediccion, en base al entrenamiento
-  geom_line(aes(x=dataset$Level,y=predict(type_regressor,newdata=dataset)),
+  geom_line(aes(x=dataset$Level,y=predict(svr_regressor,newdata=dataset$Level)),
             color="blue")+
-  ggtitle("Prediccion {type}  ")+
-  xlab("labelx")+
-  ylab("labely")
+  ggtitle("Prediccion SVR  ")+
+  xlab("Nivel del empleado")+
+  ylab("Sueldo en $")
 
 

@@ -1,17 +1,16 @@
 # =============================================================================
-# --------------------Plantilla de Pro-procesado--------------------
+# --------------------Plantilla de Pre-procesado--------------------
 # =============================================================================
 
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-dataset = read.csv('Data.csv')
-
-# Estructura de los datos:clientes que compraron algo
-# Si intentara predecir que clientes pueden comprar algun 
-# producto teninedo solamente las 3 primeras columnas.
-# Filas :10
-# Columnas:Country|Age|Salary|Purchased
+# Estructura de los datos: {explicar eldataset y el objetivo}.
+# Filas :{numero de filas}
+# Columnas:
+#           |{col1}|{col2}|{...} (vars independiente)
+#           |{columna de var indep.}| (var_dependiente)
+dataset = read.csv('dataset.csv')
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R

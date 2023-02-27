@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jul  7 15:13:26 2022
+Date: Wed Feb 22 22:39:14 2023
 
-@author: Muerto
+@author: edwin
 """
 
 # =============================================================================
-# --------------------Plantilla de Pre-procesado--------------------
+# Plantilla de Clasificacion
 # =============================================================================
-
 # =============================================================================
 # --------------------Importando librerias--------------------
 # =============================================================================
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
@@ -119,4 +117,63 @@ X_test = sc_X.transform(X_test)
 ## En este caso no es necesario escalar las variables dependiente,
 ## pero en otras ocaciones si se necesitaran escalar
 
+# =============================================================================
+# Ajustar el modelo {modelo de clasificacion} al conjunto de entrenamiento
+# =============================================================================
+from sklearn import 
 
+classifier = 
+classifier.fit(X_train,y_train)
+
+# =============================================================================
+# Prediccion de los resultados con el conjunto de testing
+# =============================================================================
+
+y_pred=classifier.predict(X_test)
+
+
+
+# =============================================================================
+# Elaborar una Matriz de confusion
+# 
+# |------------------------|-----------------------|
+# | Los que si compraron   | Los que no compraron  |
+# | predijo correctamente  | pero predice que si   |
+# |------------------------|-----------------------|
+# | Los que si compraron   | Los que no compraron  |
+# |  pero predice que no   | predijo correctamente |
+# |------------------------|-----------------------|
+# =============================================================================
+
+from sklearn.metrics import confusion_matrix
+
+c_m=confusion_matrix(y_test, y_pred)
+
+# =============================================================================
+# Representacion grafica de los resultados del algoritmo
+# =============================================================================
+
+from matplotlib.colors import ListedColormap
+X_set, y_set=X_train, y_train
+
+# Genera todos los punto del dominio posible (mallado de la region)
+X1,X2=np.meshgrid(np.arange(start=X_set[:,0].min()-1,stop=X_set[:,0].max()+1,step=0.01),
+                  np.arange(start=X_set[:,1].min()-1,stop=X_set[:,1].max()+1,step=0.01))
+# pindando todo el plano 
+plt.contourf(X1,X2,classifier.predict(np.array([X1.ravel(),X2.ravel()]).T).reshape(X1.shape),
+             alpha=0.75,cmap=ListedColormap(('red','green')))
+# division de la region del trabajo (Dominio)
+plt.xlim(X1.min(),X1.max())
+plt.ylim(X2.min(),X2.max())
+
+# pintando los resultados categoricos en el grafico
+for i, j in enumerate(np.unique(y_set)):
+    aux=(y_set == j).ravel()
+    plt.scatter(X_set[aux, 0], X_set[aux, 1],
+                c = ListedColormap(('red', 'green'))(i), label = j)
+
+plt.title('Clasificador{}')
+plt.xlabel('algo en x')
+plt.ylabel('Si/No')
+plt.legend()
+plt.show()

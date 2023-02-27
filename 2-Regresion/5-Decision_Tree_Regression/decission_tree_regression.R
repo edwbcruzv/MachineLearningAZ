@@ -1,51 +1,54 @@
 # =============================================================================
-# --------------------Plantilla de Pre-procesado--------------------
+# Decission Tree Regression
 # =============================================================================
 
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
+# Estructura de los datos:tipos de empleados y el nivel 
+# de cada tipo de empleado y el salario correspondiente.
+# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
+# Filas :10
 # Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-dataset = read.csv('dataset.csv')
+#           |Position|Level| (vars independiente)
+#           |salary| (var_dependiente)
+dataset = read.csv('Position_Salaries.csv')
+dataset = dataset[,2:3]
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
 
 # =============================================================================
-# --------------------Dividiendo dataset en conjuntos--------------------
-# --------------------de entrenamiento y conjunto de testings-------------
-# =============================================================================
-# {se pueden modificar segun se necesite}
-# =============================================================================
 # Ajustar la regresion {sea cualquier tipo} con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
-type_regressor=lm(formula=Salary ~ .,data=dataset)
-summary(type_regressor)
+tree_regressor=rpart(formula = dataset$Salary ~ dataset$Level,
+                     data=dataset,
+                     control = rpart.control(minsplit = 1))
+summary(tree_regressor)
 # =============================================================================
 # Prediccion de nuestros modelos (Resultados)
 # =============================================================================
-y_pred_type=predict(type_regressor,newdata=testing_data)
-print(y_pred_type)
+y_pred_tree=predict(tree_regressor,newdata=data.frame(Level=6.5))
+print(y_pred_tree)
 # =============================================================================
 # Visualizacion de los resultado: Modelo {type}
 # =============================================================================
 # Para mostrar la grafica de datos de entrenamiento
 
-# grid=seq(min(dataset$Level),max(dataset$Level),0.1)
+x_grid=seq(min(dataset$Level),max(dataset$Level),0.1)
 # Agregando componentes a mostrar
 ggplot()+
   # Dobujando los puntos de entrenamiento
   geom_point(aes(x=dataset$Level,y=dataset$Salary),
              color="red")+
   # Dobujando la linea de la prediccion, en base al entrenamiento
-  geom_line(aes(x=dataset$Level,y=predict(type_regressor,newdata=dataset)),
+  geom_line(aes(x=dataset$Level,y=predict(tree_regressor,newdata=dataset)),
+  # geom_line(aes(x=x_grid,
+  #               y=predict(tree_regressor,
+  #                         newdata=data.frame(Level=x_grid))), # ver porque no funciona esta parte----
             color="blue")+
-  ggtitle("Prediccion {type}  ")+
+  ggtitle("Prediccion usando regresion con arboles de decision   ")+
   xlab("labelx")+
   ylab("labely")
 
