@@ -136,13 +136,13 @@ y_pred=classifier.predict(X_test)
 # =============================================================================
 # Elaborar una Matriz de confusion
 # 
-# |------------------------|-----------------------|
-# | Los que si compraron   | Los que no compraron  |
-# | predijo correctamente  | pero predice que si   |
-# |------------------------|-----------------------|
-# | Los que si compraron   | Los que no compraron  |
-# |  pero predice que no   | predijo correctamente |
-# |------------------------|-----------------------|
+# |----------------------|----------------------|
+# |     Verdaderos       |      Falsos          |
+# |     Positivo         |      Positivos       |
+# |----------------------|----------------------|
+# |     Falsos           |      Verdaderos      |
+# |     Negativos        |      Negativos       |
+# |----------------------|----------------------|
 # =============================================================================
 
 from sklearn.metrics import confusion_matrix
