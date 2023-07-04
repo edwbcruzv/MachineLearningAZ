@@ -143,31 +143,13 @@ regression_OLS=sm.OLS(y,X_opt).fit()
 # PASO 3: CONSIDERAR LA VARIABLE PREDICTORA CON EL P-VALOR MAS GRANDE.
 print(regression_OLS.summary())
 # SI P>SL, ENTONCES VAMOS AL PASO 4.
-# Al mostrar con sumary vemos que x2 > SL, entonces vamos al PASO 4.
+# Al mostrar con sumary vemos que x3 > SL, entonces vamos al PASO 4.
 # SINO AL FIN.
 # =============================================================================
 
 # =============================================================================
 # PASO 4: SE ELIMINA LA VARIABLE PREDICTORA
-X_opt=X[:,[0,1,3,4,5]] # se elimino x2
-# =============================================================================
-
-# =============================================================================
-# PASO 5: AJUSTAR EL MODELO SIN DICHA VARIABLE
-regression_OLS=sm.OLS(y,X_opt).fit()
-# =============================================================================
-
-# =============================================================================
-# PASO 3: CONSIDERAR LA VARIABLE PREDICTORA CON EL P-VALOR MAS GRANDE.
-print(regression_OLS.summary())
-# SI P>SL, ENTONCES VAMOS AL PASO 4.
-# Al mostrar con sumary vemos que x1 > SL, entonces vamos al PASO 4.
-# SINO AL FIN.
-# =============================================================================
-
-# =============================================================================
-# PASO 4: SE ELIMINA LA VARIABLE PREDICTORA
-X_opt=X[:,[0,3,4,5]] # se elimino x1
+X_opt=X[:,[0,1,2,4,5]] # se elimino x3
 # =============================================================================
 
 # =============================================================================
@@ -185,7 +167,25 @@ print(regression_OLS.summary())
 
 # =============================================================================
 # PASO 4: SE ELIMINA LA VARIABLE PREDICTORA
-X_opt=X[:,[0,3,5]] # se elimino x2
+X_opt=X[:,[0,1,4,5]] # se elimino x2
+# =============================================================================
+
+# =============================================================================
+# PASO 5: AJUSTAR EL MODELO SIN DICHA VARIABLE
+regression_OLS=sm.OLS(y,X_opt).fit()
+# =============================================================================
+
+# =============================================================================
+# PASO 3: CONSIDERAR LA VARIABLE PREDICTORA CON EL P-VALOR MAS GRANDE.
+print(regression_OLS.summary())
+# SI P>SL, ENTONCES VAMOS AL PASO 4.
+# Al mostrar con sumary vemos que x3 > SL, entonces vamos al PASO 4.
+# SINO AL FIN.
+# =============================================================================
+
+# =============================================================================
+# PASO 4: SE ELIMINA LA VARIABLE PREDICTORA
+X_opt=X[:,[0,1,4]] # se elimino x3
 # =============================================================================
 
 # =============================================================================

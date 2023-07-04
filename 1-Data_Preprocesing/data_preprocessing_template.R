@@ -10,7 +10,7 @@
 # Columnas:
 #           |{col1}|{col2}|{...} (vars independiente)
 #           |{columna de var indep.}| (var_dependiente)
-dataset = read.csv('dataset.csv')
+dataset = read.csv('Data.csv')
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
@@ -63,7 +63,7 @@ dataset$Purchased = factor(dataset$Purchased,
 set.seed(10)
 # se elige el porcentaje de los datos para el training en %
 split = sample.split(dataset$Purchased,SplitRatio = 0.8)
-
+print(split)
 # Dividiendo el conjunto , False para el test
 training_set = subset(dataset,split == FALSE)
 # Dividiendo el conjunto , True para el training

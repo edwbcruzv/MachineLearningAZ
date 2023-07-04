@@ -92,7 +92,7 @@ regression=lm(formula=Profit ~ R.D.Spend +
                               Administration + 
                               Marketing.Spend +
                               State,
-              data=dataset)
+                              data=dataset)
 # =============================================================================
 
 # =============================================================================

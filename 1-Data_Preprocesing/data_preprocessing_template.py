@@ -26,15 +26,15 @@ import pandas as pd
 #           |{col1}|{col2}|{...} (vars independiente)
 #           |{columna de var indep.}| (var_dependiente)
 
-dataset = pd.read_csv('dataset.csv') # {buscar el dataset}
+dataset = pd.read_csv('Data.csv') # {buscar el dataset}
 
 # Variable independiente:Mayuscula por ser una matriz.
 #   tomamos [Todas las filas ,Solo la columna(s)...]
-X = dataset.iloc[:,1:2].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,0:3].values # {se pueden modificar segun se necesite}
 
 # Variable dependiente:minuscula por ser un vector.
 #   tomamos [Todas las filas: Solo la ultima columna]
-y = dataset.iloc[:,2:3].values # {se pueden modificar segun se necesite}
+y = dataset.iloc[:,-1].values # {se pueden modificar segun se necesite}
 
 # Nota: convertir a matrices tanto a X como a y para evitar problemas
 #       al no usar matrices.
@@ -48,7 +48,7 @@ from sklearn.impute import SimpleImputer
 imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
 # Seleccionando las columnas las cuales estan los valores NA´s.
 # [Todas las filas,Columnas 1 y 2]
-imputer = imputer.fit(X[:,1:3]) # ajustando valores
+imputer.fit(X[:,1:3]) # ajustando valores
 # Sobreescribirnedo la matriz con la nueva trasformacion configurada.
 X[:,1:3] = imputer.transform(X[:,1:3])
 
@@ -81,7 +81,7 @@ ct = ColumnTransformer(
     remainder='passthrough')
 # # Se creara una columna por cada pais (categorizando)
 # # Y con un booleano se sabra el pais correspondiente (onehotencoder)
-# X=ct.fit_transform(X)
+
 X = np.array(ct.fit_transform(X),dtype=float)
 
 # Se categoriza columna "Puerchased" usando solo o y 1, ya que solo son 
