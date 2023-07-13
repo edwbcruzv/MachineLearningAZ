@@ -50,11 +50,12 @@ linear_regression.fit(X,y)
 # =============================================================================
 
 from sklearn.preprocessing import PolynomialFeatures
+
 poly_regression=PolynomialFeatures(degree=4) # se puede jugar con el grado
 X_poly=poly_regression.fit_transform(X)
 
-linear_regression_2=LinearRegression()
-linear_regression_2.fit(X_poly,y)
+polynomial_regression=LinearRegression()
+polynomial_regression.fit(X_poly,y)
 
 # =============================================================================
 # Visualizacion de los resultado: Modelo Lineal
@@ -69,7 +70,7 @@ plt.show()
 # Visualizacion de los resultado: Modelo Polinomico
 # =============================================================================
 plt.scatter(X,y,color='red')
-plt.plot(X,linear_regression_2.predict(X_poly),color='green')
+plt.plot(X,polynomial_regression.predict(X_poly),color='green')
 plt.title("Modelo Regresion Polinomica")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")
@@ -79,7 +80,7 @@ plt.show()
 # =============================================================================
 
 linear_regression.predict([[6.5]])
-linear_regression_2.predict(poly_regression.fit_transform([[6.5]]))
+polynomial_regression.predict(poly_regression.fit_transform([[6.5]]))
 
 
 

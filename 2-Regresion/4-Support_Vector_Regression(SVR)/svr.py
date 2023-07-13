@@ -49,21 +49,17 @@ sc_y = StandardScaler()
 X= sc_X.fit_transform(X)
 y= sc_y.fit_transform(y)
 # =============================================================================
-# Ajustar la SVR con el dataset
+# --------------------Ajustar la SVR con el dataset--------------------
 # =============================================================================
 
 from sklearn.svm import SVR
+
 svr_regression=SVR(kernel='rbf')
 svr_regression.fit(X,y)
 
-# =============================================================================
-# Prediccion de nuestros modelos (Resultados)
-# =============================================================================
-y_pred_sc=svr_regression.predict(sc_X.transform([[6.5]]))
-y_pred=sc_y.inverse_transform([y_pred_sc])
 
 # =============================================================================
-# Visualizacion de los resultado: Modelo Polinomico
+# --------------Visualizacion de los resultado del modelo--------------
 # =============================================================================
 plt.scatter(X,y,color='red')
 plt.plot(X,svr_regression.predict(X),color='green')
@@ -71,3 +67,10 @@ plt.title("Modelo Regresion SVR")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")
 plt.show()
+
+# =============================================================================
+# -----------------Prediccion de nuestros modelos-----------------
+# =============================================================================
+y_pred_sc=svr_regression.predict(sc_X.transform([[6.5]]))
+y_pred=sc_y.inverse_transform([y_pred_sc])
+print(y_pred)

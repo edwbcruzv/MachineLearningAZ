@@ -46,13 +46,8 @@ from sklearn.tree import DecisionTreeRegressor
 tree_regression=DecisionTreeRegressor(random_state=0)
 tree_regression.fit(X,y)
 
-# ===== ========================================================================
-# Prediccion de nuestros modelos (Resultados)
 # =============================================================================
-y_pred=tree_regression.predict([[6.5]])
-
-# =============================================================================
-# Visualizacion de los resultado: arboles de decision
+# Visualizacion de los resultado: Arboles de Decision
 # =============================================================================
 
 X_grid =np.arange(min(X),max(X),0.1)
@@ -65,3 +60,9 @@ plt.title("Modelo Regresion por arboles de decision")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")
 plt.show()
+
+# =============================================================================
+# Prediccion de nuestros modelos (Resultados)
+# =============================================================================
+y_pred=tree_regression.predict([[6.5]])
+
