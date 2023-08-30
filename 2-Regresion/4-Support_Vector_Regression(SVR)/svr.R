@@ -13,21 +13,15 @@
 #           |Position|Level| (vars independiente)
 #           |salary| (var_dependiente)
 dataset = read.csv('Position_Salaries.csv')
-
-# No se hace ninguna distincion entre variables independientes 
-# y variables dependientes en R
-
+dataset = dataset[,2:3]
 # =============================================================================
 # Ajustar la SVR con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
+# library(e1071)
 svr_regressor=svm(x = dataset$Level,y = dataset$Salary,kernel='radial')
 summary(svr_regressor)
-# =============================================================================
-# Prediccion de nuestros modelos (Resultados)
-# =============================================================================
-y_pred_type=predict(svr_regressor,newdata=6.5)
-print(y_pred_type)
+
 # =============================================================================
 # Visualizacion de los resultado: Modelo {type}
 # =============================================================================
@@ -46,4 +40,9 @@ ggplot()+
   xlab("Nivel del empleado")+
   ylab("Sueldo en $")
 
+# =============================================================================
+# Prediccion de nuestros modelos (Resultados)
+# =============================================================================
+y_pred_type=predict(svr_regressor,newdata=6.5)
+print(y_pred_type)
 

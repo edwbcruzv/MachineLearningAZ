@@ -45,11 +45,6 @@ from sklearn.ensemble import RandomForestRegressor
 rf_regression=RandomForestRegressor(n_estimators=100,random_state=0)
 rf_regression.fit(X,y)
 
-# ===== ========================================================================
-# Prediccion de nuestros modelos (Resultados)
-# =============================================================================
-y_pred=rf_regression.predict([[6.5]])
-
 # =============================================================================
 # Visualizacion de los resultado: Random Forest
 # =============================================================================
@@ -64,3 +59,10 @@ plt.title("Modelo Regresion por arboles aleatorios de decision")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")
 plt.show()
+
+# =============================================================================
+# Prediccion de nuestros modelos (Resultados)
+# =============================================================================
+y_pred=rf_regression.predict([[6.5]])
+print(y_pred)
+

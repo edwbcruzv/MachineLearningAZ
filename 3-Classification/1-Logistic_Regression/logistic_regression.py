@@ -48,7 +48,7 @@ from sklearn.model_selection import train_test_split
 #           matridependiente a predecir,
 #           tamaño del conjunto de testing en % (el resto se va a entrenamiento),
 #           numero random de division de datos (semilla random=cualquier numero).
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3,random_state=1)
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25,random_state=1)
 
 # =============================================================================
 # --------------------Escalado de variables--------------------

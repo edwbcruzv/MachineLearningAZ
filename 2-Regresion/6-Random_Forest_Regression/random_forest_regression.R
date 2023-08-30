@@ -22,15 +22,12 @@ dataset = dataset[,2:3]
 # Ajustar la regresion random forest con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
+library(randomForest)
 set.seed(1234)
 rf_regressor=randomForest(x=dataset[1],y=dataset$Salary,
                           ntree=100)
 summary(rf_regressor)
-# =============================================================================
-# Prediccion de nuestros modelos (Resultados)
-# =============================================================================
-y_pred_tree=predict(rf_regressor,newdata=data.frame(Level=6.5))
-print(y_pred_tree)
+
 # =============================================================================
 # Visualizacion de los resultado: Modelo random forest
 # =============================================================================
@@ -52,5 +49,9 @@ ggplot()+
   xlab("labelx")+
   ylab("labely")
 
-
+# =============================================================================
+# Prediccion de nuestros modelos (Resultados)
+# =============================================================================
+y_pred_tree=predict(rf_regressor,newdata=data.frame(Level=6.5))
+print(y_pred_tree)
 

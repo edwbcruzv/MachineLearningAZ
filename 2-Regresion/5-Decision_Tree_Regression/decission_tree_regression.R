@@ -19,18 +19,15 @@ dataset = dataset[,2:3]
 # y variables dependientes en R
 
 # =============================================================================
-# Ajustar la regresion {sea cualquier tipo} con el dataset
+# Ajustar la regresion con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
+# library(rpart)
 tree_regressor=rpart(formula = dataset$Salary ~ dataset$Level,
                      data=dataset,
                      control = rpart.control(minsplit = 1))
 summary(tree_regressor)
-# =============================================================================
-# Prediccion de nuestros modelos (Resultados)
-# =============================================================================
-y_pred_tree=predict(tree_regressor,newdata=data.frame(Level=6.5))
-print(y_pred_tree)
+
 # =============================================================================
 # Visualizacion de los resultado: Modelo {type}
 # =============================================================================
@@ -52,4 +49,9 @@ ggplot()+
   xlab("labelx")+
   ylab("labely")
 
+# =============================================================================
+# Prediccion de nuestros modelos (Resultados)
+# =============================================================================
+y_pred_tree=predict(tree_regressor,newdata=data.frame(Level=6.5))
+print(y_pred_tree)
 

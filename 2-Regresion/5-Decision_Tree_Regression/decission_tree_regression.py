@@ -54,8 +54,8 @@ X_grid =np.arange(min(X),max(X),0.1)
 X_grid=X_grid.reshape(len(X_grid),1)
 
 plt.scatter(X,y,color='red')
-# plt.plot(X_grid,tree_regression.predict(X_grid),color='green')
-plt.plot(X,tree_regression.predict(X),color='green')
+plt.plot(X_grid,tree_regression.predict(X_grid),color='green') # linea 1
+# plt.plot(X,tree_regression.predict(X),color='green') # linea 2
 plt.title("Modelo Regresion por arboles de decision")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")
@@ -65,4 +65,4 @@ plt.show()
 # Prediccion de nuestros modelos (Resultados)
 # =============================================================================
 y_pred=tree_regression.predict([[6.5]])
-
+print(y_pred)
