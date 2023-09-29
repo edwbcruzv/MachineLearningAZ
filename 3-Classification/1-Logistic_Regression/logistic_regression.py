@@ -72,7 +72,7 @@ X_test = sc_X.transform(X_test)
 # =============================================================================
 from sklearn.linear_model import LogisticRegression
 
-classifier = LogisticRegression(random_state=0)
+classifier = LogisticRegression(random_state=1)
 classifier.fit(X_train,y_train)
 
 # =============================================================================
@@ -122,7 +122,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[aux, 0], X_set[aux, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
 
-plt.title('Classificador Regresion Logistico')
+plt.title('Modelo de Regresion Logistica')
 plt.xlabel('algo en x')
 plt.ylabel('Si/No')
 plt.legend()

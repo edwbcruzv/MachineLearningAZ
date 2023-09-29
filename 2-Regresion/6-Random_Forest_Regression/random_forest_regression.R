@@ -22,8 +22,8 @@ dataset = dataset[,2:3]
 # Ajustar la regresion random forest con el dataset
 # =============================================================================
 # crear nuestra variable de regresion aqui
-library(randomForest)
-set.seed(1234)
+# library(randomForest)
+set.seed(1)
 rf_regressor=randomForest(x=dataset[1],y=dataset$Salary,
                           ntree=100)
 summary(rf_regressor)

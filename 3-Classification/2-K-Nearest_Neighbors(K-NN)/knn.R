@@ -25,7 +25,7 @@ dataset = dataset[,3:5]
 # install.packages("caTools") # solo se necesita ejecutar una vez
 # library(caTools)
 # configurando semilla aleatoria para la division de datos
-set.seed(0)
+set.seed(1)
 # se elige el porcentaje de los datos para el training en %
 split = sample.split(dataset$Purchased,SplitRatio = 0.25)
 print(split)
@@ -98,7 +98,7 @@ y_grid = knn(training_set[,-3],
 
 plot(
   set[,-3],
-  main = "Clasificacion (Conjunto de Entrenamiento)",
+  main = "Clasificacion K-nn (Conjunto de Entrenamiento)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),
@@ -130,7 +130,7 @@ y_grid = knn(training_set[,-3],
 
 plot(
   set[,-3],
-  main = "Clasificacion (Conjunto de Testing)",
+  main = "Clasificacion K-nn (Conjunto de Testing)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),

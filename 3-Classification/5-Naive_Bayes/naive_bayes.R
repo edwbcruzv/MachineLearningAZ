@@ -47,12 +47,9 @@ testing_set[,1:2] = scale(testing_set[,1:2])
 # Ajustar el modelo de {  } al conjunto de entrenamiento
 # =============================================================================
 # install.packages("e1071") # solo se necesita ejecutar una vez
-# library()
-
-classifier = svm(formula = Purchased ~ . ,
-                 data = training_set,
-                 type = "C-classification",
-                 kernel = "radial")
+# library(e1071)
+classifier = naiveBayes(x = training_set[,-3],
+                        y = training_set$Purchased)
   
   # =============================================================================
 # Prediccion de los resultados con el conjunto de testing
@@ -89,9 +86,11 @@ X2 = seq(min(set[,2]) -1, max(set[,2]) + 1, by = 0.01)
 grid_set = expand.grid(X1,X2)
 colnames(grid_set) = c('Age','EstimatedSalary')
 y_grid=predict(classifier, newdata = grid_set)
+
+
 plot(
   set[,-3],
-  main = "Clasificacion Kernel Radial (Conjunto de Entrenamiento)",
+  main = "Clasificacion Naive Bayes (Conjunto de Entrenamiento)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),
@@ -119,7 +118,7 @@ y_grid=predict(classifier, newdata = grid_set)
 
 plot(
   set[,-3],
-  main = "Clasificacion Kernel Radial (Conjunto de Testing)",
+  main = "Clasificacion NAive Bayes (Conjunto de Testing)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),

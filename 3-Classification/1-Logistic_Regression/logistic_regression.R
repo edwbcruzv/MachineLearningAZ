@@ -25,7 +25,7 @@ dataset = dataset[,3:5]
 # install.packages("caTools") # solo se necesita ejecutar una vez
 # library(caTools)
 # configurando semilla aleatoria para la division de datos
-set.seed(10)
+set.seed(1)
 # se elige el porcentaje de los datos para el training en %
 split = sample.split(dataset$Purchased,SplitRatio = 0.25)
 print(split)
@@ -60,7 +60,6 @@ classifier = glm(formula = Purchased ~ . ,
 # obtenemos las probabilidades listadas
 prob_pred = predict(classifier,type = "response", newdata = testing_set[,-3])
 print(prob_pred)
-# 
 
 y_pred = ifelse(prob_pred > 0.5, 1, 0)
 print(y_pred)
@@ -126,7 +125,7 @@ y_grid = ifelse(prob_set > 0.5, 1, 0)
 
 plot(
   set[,-3],
-  main = "Clasificacion (Conjunto de Testing)",
+  main = "Modelo de Regresion Logistica (Testing)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),

@@ -25,7 +25,7 @@ dataset = dataset[,3:5]
 # install.packages("caTools") # solo se necesita ejecutar una vez
 # library(caTools)
 # configurando semilla aleatoria para la division de datos
-set.seed(1)
+set.seed(0)
 # se elige el porcentaje de los datos para el training en %
 split = sample.split(dataset$Purchased,SplitRatio = 0.25)
 print(split)
@@ -46,19 +46,18 @@ testing_set[,1:2] = scale(testing_set[,1:2])
 # =============================================================================
 # Ajustar el modelo de {  } al conjunto de entrenamiento
 # =============================================================================
-# install.packages("e1071") # solo se necesita ejecutar una vez
-# library()
 
-classifier = svm(formula = Purchased ~ . ,
-                 data = training_set,
-                 type = "C-classification",
-                 kernel = "radial")
+classifier =
   
   # =============================================================================
 # Prediccion de los resultados con el conjunto de testing
 # =============================================================================
 # obtenemos las probabilidades listadas
-y_pred = predict(classifier, newdata = testing_set[,-3])
+prob_pred = predict(classifier,type = "response", newdata = testing_set[,-3])
+print(prob_pred)
+# 
+
+y_pred = ifelse(prob_pred > 0.5, 1, 0)
 print(y_pred)
 
 # =============================================================================
@@ -88,10 +87,12 @@ X1 = seq(min(set[,1]) -1, max(set[,1]) + 1, by = 0.01)
 X2 = seq(min(set[,2]) -1, max(set[,2]) + 1, by = 0.01)
 grid_set = expand.grid(X1,X2)
 colnames(grid_set) = c('Age','EstimatedSalary')
-y_grid=predict(classifier, newdata = grid_set)
+prob_set=predict(classifier,type = 'response', newdata = grid_set)
+y_grid = ifelse(prob_set > 0.5, 1, 0)
+
 plot(
   set[,-3],
-  main = "Clasificacion Kernel Radial (Conjunto de Entrenamiento)",
+  main = "Clasificacion Bosques Aleatorios (Conjunto de Entrenamiento)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),
@@ -115,11 +116,12 @@ X1 = seq(min(set[,1]) -1, max(set[,1]) + 1, by = 0.01)
 X2 = seq(min(set[,2]) -1, max(set[,2]) + 1, by = 0.01)
 grid_set = expand.grid(X1,X2)
 colnames(grid_set) = c('Age','EstimatedSalary')
-y_grid=predict(classifier, newdata = grid_set)
+prob_set=predict(classifier, type = "response", newdata = grid_set)
+y_grid = ifelse(prob_set > 0.5, 1, 0)
 
 plot(
   set[,-3],
-  main = "Clasificacion Kernel Radial (Conjunto de Testing)",
+  main = "Clasificacion Bosques Aleatorios (Conjunto de Testing)",
   xlab = 'Edad',
   ylab = 'Sueldo Estimado',
   xlim = range(X1),

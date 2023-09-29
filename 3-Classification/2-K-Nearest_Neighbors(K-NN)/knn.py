@@ -65,7 +65,7 @@ from sklearn.model_selection import train_test_split
 #           matridependiente a predecir,
 #           tamaño del conjunto de testing en % (el resto se va a entrenamiento),
 #           numero random de division de datos (semilla random=cualquier numero).
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25,random_state=10)
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25,random_state=1)
 
 # =============================================================================
 # --------------------Escalado de variables--------------------
@@ -139,7 +139,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[aux, 0], X_set[aux, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
 
-plt.title('Clasificador K-NN entrenamiento')
+plt.title('Modelo K-NN entrenamiento')
 plt.xlabel('algo en x')
 plt.ylabel('Si/No')
 plt.legend()
@@ -166,7 +166,7 @@ for i, j in enumerate(np.unique(y_set)):
     plt.scatter(X_set[aux, 0], X_set[aux, 1],
                 c = ListedColormap(('red', 'green'))(i), label = j)
 
-plt.title('Clasificador K-NN testing')
+plt.title('Modelo K-NN testing')
 plt.xlabel('algo en x')
 plt.ylabel('Si/No')
 plt.legend()
