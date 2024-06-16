@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 15 22:47:03 2023
-
-@author: cruz
-"""
 
 # =============================================================================
 # Support Verctorial Machine
@@ -19,26 +14,15 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-
-dataset = pd.read_csv('Social_Network_Ads.csv') # {buscar el dataset}
+dataset = pd.read_csv('Social_Network_Ads.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna(s)...]
-X = dataset.iloc[:,2:4].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,2:4].values 
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
-y = dataset.iloc[:,[4]].values # {se pueden modificar segun se necesite}
+y = dataset.iloc[:,[4]].values
 
-# Nota: convertir a matrices tanto a X como a y para evitar problemas
-#       al no usar matrices.
-
-
+# Nota: convertir a matrices tanto a X como a y para evitar errores
 # =============================================================================
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings--------------------
@@ -74,7 +58,7 @@ X_test = sc_X.transform(X_test)
 # =============================================================================
 from sklearn.svm import SVC 
 
-classifier = SVC(kernel="linear", random_state=1)
+classifier = SVC(kernel="linear", random_state=0)
 classifier.fit(X_train,y_train)
 
 # =============================================================================
@@ -82,8 +66,6 @@ classifier.fit(X_train,y_train)
 # =============================================================================
 
 y_pred=classifier.predict(X_test)
-
-
 
 # =============================================================================
 # Elaborar una Matriz de confusion

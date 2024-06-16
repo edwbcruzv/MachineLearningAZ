@@ -20,30 +20,18 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos:
-# Contiene informacion de 50 empresas y sus gastos en 3 areas, lugar 
-# donde se ubican y la ganancia 
-# Filas :50
-# Columnas:
-#           |RyD Spend|Administration|Marketing Spend|State (vars independiente)
-#           |Profit (var_dependiente)
-
 dataset = pd.read_csv('50_Startups.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas , Todas las columnas, menos la ultima]
 X = dataset.iloc[:,:-1].values
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
 y = dataset.iloc[:,4].values
 
 # =============================================================================
 # --------------------Codificar datos categoricos--------------------
 # =============================================================================
-# Los datos son categorias que se deben de tranformar a numeros para
-# que python los pueda trabajar.
-# En este caso la columna "State".
+
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
@@ -56,7 +44,6 @@ X[:,3]=le_X.fit_transform(X[:,3])
 # Ahora se debe de transformar la columna "State" a variables dummy,
 # creando una columna por cada categoria y de las variables dummy solo se
 # marca la categoria correcta con un booleano.
-
 
 ct = ColumnTransformer(
     # Lista de tuplas (nombre,transformador,columnas) que se le aplicara 
@@ -108,7 +95,7 @@ from sklearn.linear_model import LinearRegression
 regression = LinearRegression()
 regression.fit(X_train,y_train)
 
-# prediccion de los resultados en el conjunto de testing 
+# prediccion de los resultados en el conjunto de testing
 y_pred=regression.predict(X_test)
 
 # =============================================================================

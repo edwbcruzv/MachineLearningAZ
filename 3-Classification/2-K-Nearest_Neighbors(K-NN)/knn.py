@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 15 22:10:46 2023
-
-@author: cruz
-"""
 
 # =============================================================================
 # K - Nearest Neighbors 
@@ -19,24 +14,15 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-
 dataset = pd.read_csv('Social_Network_Ads.csv') # {buscar el dataset}
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna(s)...]
-X = dataset.iloc[:,2:4].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,2:4].values
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
-y = dataset.iloc[:,4].values # {se pueden modificar segun se necesite}
+y = dataset.iloc[:,4].values
 
-# Nota: convertir a matrices tanto a X como a y para evitar problemas
-#       al no usar matrices.
+# Nota: convertir a matrices tanto a X como a y para evitar errores
 # =============================================================================
 # --------------------Tratamiendo de NAs--------------------
 # =============================================================================
@@ -50,9 +36,6 @@ imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
 imputer = imputer.fit(X[:,1:3]) # ajustando valores
 # Sobreescribirnedo la matriz con la nueva trasformacion configurada.
 X[:,1:3] = imputer.transform(X[:,1:3])
-
-
-
 
 # =============================================================================
 # --------------------Dividiendo dataset en conjuntos--------------------
@@ -97,8 +80,6 @@ classifier.fit(X_train,y_train)
 # =============================================================================
 
 y_pred=classifier.predict(X_test)
-
-
 
 # =============================================================================
 # Elaborar una Matriz de confusion

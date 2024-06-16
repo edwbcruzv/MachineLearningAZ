@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Date: Wed Feb 22 20:21:24 2023
 
-@author: edwin
-"""
 # =============================================================================
 # --------------------Importando librerias--------------------
 # =============================================================================
@@ -15,28 +11,15 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: Datos de publicidad de una red social.
-# Objetivo:Una empresa quiere saber si conviene publicar su producto 
-#          en la red social
-# Filas :{numero de filas}
-# Columnas: (vars independiente)
-#           |User ID|Gender|Age|UltimatedSalary|
-
-#           (var_dependiente)
-#           |Purchased(si compro o no)| 
-
 dataset = pd.read_csv('Social_Network_Ads.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna(s)...]
-X = dataset.iloc[:,[2,3]].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,[2,3]].values
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
 y = dataset.iloc[:,[4]].values # {se pueden modificar segun se necesite}
 
-# Nota: convertir a matrices tanto a X como a y para evitar problemas
-#       al no usar matrices.
+# Nota: convertir a matrices tanto a X como a y para evitar errores
 # =============================================================================
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings--------------------

@@ -25,7 +25,7 @@ dataset = dataset[,2:3]
 # library(randomForest)
 set.seed(1)
 rf_regressor=randomForest(x=dataset[1],y=dataset$Salary,
-                          ntree=100)
+                          ntree=1000)
 summary(rf_regressor)
 
 # =============================================================================

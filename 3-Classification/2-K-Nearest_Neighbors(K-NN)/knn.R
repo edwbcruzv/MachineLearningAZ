@@ -50,7 +50,7 @@ testing_set[,1:2] = scale(testing_set[,1:2])
 y_pred = knn(training_set[,-3],
                  testing_set[,-3],
                  cl = training_set[,3],
-                 k = 5)
+                 k = 11)
 print(y_pred)
 # =============================================================================
 # Prediccion de los resultados con el conjunto de testing

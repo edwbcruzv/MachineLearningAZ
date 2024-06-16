@@ -5,22 +5,17 @@
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
+
 dataset = read.csv('Data.csv')
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
-
 # =============================================================================
 # --------------------Tratamiendo de NAs--------------------
 # =============================================================================
 
 # Los valores desconocidos de los valores independientes son los NA´s
-# ifelse("Condicion",Sentencia si es verdadera,sentencia si es falso)
+# ifelse("Condicion", verdadera, falso)
 dataset$Age = ifelse(is.na(dataset$Age),
                      # El valor que se va a sustituir que sera la media
                      ave(dataset$Age,FUN= function(x) mean(x,na.rm=TRUE)),
@@ -40,7 +35,7 @@ dataset$Salary = ifelse(is.na(dataset$Salary),
 
 # se convierte una columna en factores
 dataset$Country = factor(dataset$Country,
-                     # dandole un valos a cada etiqueta dentro de la columna
+                     # dandole un valor a cada etiqueta dentro de la columna
                      levels = c("France","Spain", "Germany"),
                      # etiquetas
                      labels = c(1,2,3))
@@ -55,7 +50,6 @@ dataset$Purchased = factor(dataset$Purchased,
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings------------
 # =============================================================================
-
 # install.packages("caTools") # solo se necesita ejecutar una vez
 # library(caTools)
 
@@ -65,9 +59,9 @@ set.seed(10)
 split = sample.split(dataset$Purchased,SplitRatio = 0.8)
 print(split)
 # Dividiendo el conjunto , False para el test
-training_set = subset(dataset,split == FALSE)
+training_set = subset(dataset,split == TRUE)
 # Dividiendo el conjunto , True para el training
-testing_set = subset(dataset,split == TRUE)
+testing_set = subset(dataset,split == FALSE)
 
 # =============================================================================
 # --------------------Escalado de variables--------------------

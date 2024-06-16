@@ -7,17 +7,11 @@
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
 dataset = read.csv('Social_Network_Ads.csv')
 dataset = dataset[,3:5]
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
-
 # =============================================================================
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings-----------------
@@ -25,7 +19,7 @@ dataset = dataset[,3:5]
 # install.packages("caTools") # solo se necesita ejecutar una vez
 # library(caTools)
 # configurando semilla aleatoria para la division de datos
-set.seed(1)
+set.seed(2)
 # se elige el porcentaje de los datos para el training en %
 split = sample.split(dataset$Purchased,SplitRatio = 0.25)
 print(split)

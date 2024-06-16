@@ -18,22 +18,12 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos:tipos de empleados y el nivel 
-# de cada tipo de empleado y el salario correspondiente.
-# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
-# Filas :10
-# Columnas:
-#           |Position|Level| (vars independiente)
-#           |salary| (var_dependiente)
-
 dataset = pd.read_csv('Position_Salaries.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna 1 (Leavel)]
 X = dataset.iloc[:,1:2].values 
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
 y = dataset.iloc[:,2:3].values 
 
 # =============================================================================
@@ -57,7 +47,6 @@ from sklearn.svm import SVR
 svr_regression=SVR(kernel='rbf')
 svr_regression.fit(X,y)
 
-
 # =============================================================================
 # --------------Visualizacion de los resultado del modelo--------------
 # =============================================================================
@@ -71,6 +60,7 @@ plt.show()
 # =============================================================================
 # -----------------Prediccion de nuestros modelos-----------------
 # =============================================================================
-y_pred_sc=svr_regression.predict(sc_X.transform([[6.5]]))
-y_pred=sc_y.inverse_transform([y_pred_sc])
-print(y_pred)
+#y_pred_sc=svr_regression.predict(sc_X.transform([[6.5]]))
+y_pred_sc=svr_regression.predict([[6.5]])
+#y_pred=sc_y.inverse_transform([y_pred_sc])
+print(y_pred_sc)

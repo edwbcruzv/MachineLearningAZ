@@ -18,7 +18,7 @@ dataset = read.csv('Salary_Data.csv')
 # library(caTools)
 
 # configurando semilla aleatoria para la division de datos
-set.seed(0)
+set.seed(5)
 # se elige el porcentaje de los datos para el training en %
 # se selecciona la columna de la variable dependiente o a predecir
 split = sample.split(dataset$Salary,SplitRatio = 2/3)
@@ -32,14 +32,14 @@ testing_set = subset(dataset,split == FALSE)
 # --------------------Crear modelo de Regresion Lineal--------------------
 # --------------------Simple con el conjunto de entrenamiento--------------------
 # =============================================================================
-# visualisar documentacion de lm()
-regressor=lm(formula=Salary ~ YearsExperience,data=training_set)
+
+regressor=lm(formula=Salary ~ YearsExperience, data=training_set)
 summary(regressor)
 
 # =============================================================================
 # --------------------Predecir el conjunto de test--------------------
 # =============================================================================
-# (modelo de prediccion,datos de testing)
+
 y_pred=predict(regressor,newdata=testing_set)
 print(y_pred)
 

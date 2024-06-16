@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Date: Tue Feb 21 17:46:38 2023
-
-@author: edwin
-"""
 
 # =============================================================================
 # Decission Tree Regression
@@ -19,24 +14,13 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos:tipos de empleados y el nivel 
-# de cada tipo de empleado y el salario correspondiente.
-# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
-# Filas :10
-# Columnas:
-#           |Position|Level| (vars independiente)
-#           |salary| (var_dependiente)
-
-
-dataset = pd.read_csv('Position_Salaries.csv') # {buscar el dataset}
+dataset = pd.read_csv('Position_Salaries.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna 1 (Leavel)]
-X = dataset.iloc[:,1:2].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,1:2].values
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
-y = dataset.iloc[:,2:3].values # {se pueden modificar segun se necesite}
+y = dataset.iloc[:,2:3].values
 
 # =============================================================================
 # Ajustar la regresion con arboles de decision con el dataset
@@ -46,16 +30,20 @@ from sklearn.tree import DecisionTreeRegressor
 tree_regression=DecisionTreeRegressor(random_state=0)
 tree_regression.fit(X,y)
 
+y_pred=tree_regression.predict(X)
 # =============================================================================
 # Visualizacion de los resultado: Arboles de Decision
 # =============================================================================
 
-X_grid =np.arange(min(X),max(X),0.1)
+# Del minimo de la variable independiente en sumandole 0.1 hasta el maximo
+X_grid =np.arange(min(X),max(X),0.01)
+#
+# se ajusta a una matriz
 X_grid=X_grid.reshape(len(X_grid),1)
 
 plt.scatter(X,y,color='red')
 plt.plot(X_grid,tree_regression.predict(X_grid),color='green') # linea 1
-# plt.plot(X,tree_regression.predict(X),color='green') # linea 2
+#plt.plot(X,tree_regression.predict(X),color='green') # linea 2
 plt.title("Modelo Regresion por arboles de decision")
 plt.xlabel("Posicion del empleado")
 plt.ylabel("Sueldo en $")

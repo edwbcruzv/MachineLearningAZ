@@ -6,13 +6,6 @@
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos:
-# Contiene informacion de 50 empresas y sus gastos en 3 areas, lugar 
-# donde se ubican y la ganancia 
-# Filas :50
-# Columnas:
-#           |RyD Spend|Administration|Marketing Spend|State (vars independiente)
-#           |Profit (var_dependiente)
 dataset = read.csv('50_Startups.csv')
 
 # =============================================================================
@@ -31,7 +24,6 @@ dataset$State = factor(dataset$State,
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings------------
 # =============================================================================
-
 # install.packages("caTools") # solo se necesita ejecutar una vez
 # library(caTools)
 

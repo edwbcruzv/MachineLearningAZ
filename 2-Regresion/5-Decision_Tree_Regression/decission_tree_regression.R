@@ -33,7 +33,7 @@ summary(tree_regressor)
 # =============================================================================
 # Para mostrar la grafica de datos de entrenamiento
 
-x_grid=seq(min(dataset$Level),max(dataset$Level),0.1)
+x_grid=seq(min(dataset$Level),max(dataset$Level),0.01)
 # Agregando componentes a mostrar
 ggplot()+
   # Dobujando los puntos de entrenamiento

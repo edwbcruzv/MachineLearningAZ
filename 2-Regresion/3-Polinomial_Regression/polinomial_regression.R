@@ -5,19 +5,12 @@
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-# Estructura de los datos:tipos de empleados y el nivel 
-# de cada tipo de empleado y el salario correspondiente.
-# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
-# Filas :10
-# Columnas:
-#           |Position|Level| (vars independiente)
-#           |salary| (var_dependiente)
+
 dataset = read.csv('Position_Salaries.csv')
 dataset=dataset[,2:3]
 
 # No se hace ninguna distincion entre variables independientes 
 # y variables dependientes en R
-
 # =============================================================================
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings-------------
@@ -37,6 +30,7 @@ summary(linear_regressor)
 dataset$Level2=dataset$Level^2 # agregando esto se modifica el valor a polinomica
 dataset$Level3=dataset$Level^3
 dataset$Level4=dataset$Level^4
+dataset$Level5=dataset$Level^5
 poly_regressor=lm(formula=Salary ~ .,data=dataset)
 summary(poly_regressor)
 # =============================================================================

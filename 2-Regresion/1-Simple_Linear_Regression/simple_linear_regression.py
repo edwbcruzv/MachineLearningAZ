@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Oct 11 19:43:24 2022
 
-@author: Muerto
-"""
 # --------------------Regresion lineal simple--------------------
 
 import numpy as np
@@ -31,7 +27,7 @@ y = dataset.iloc[:,1].values
 
 from sklearn.model_selection import train_test_split
 
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=1/3,random_state=5)
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=1/3,random_state=2)
 
 # =============================================================================
 # --------------------Crear modelo de Regresion Lineal--------------------

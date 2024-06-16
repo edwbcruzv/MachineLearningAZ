@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Jul 16 00:44:32 2023
-
-@author: cruz
-"""
 
 # =============================================================================
 # Kernel Support Vectorial Machine
@@ -19,25 +14,15 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-
-dataset = pd.read_csv('Social_Network_Ads.csv') # {buscar el dataset}
+dataset = pd.read_csv('Social_Network_Ads.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna(s)...]
-X = dataset.iloc[:,[2,3]].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,[2,3]].values
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
-y = dataset.iloc[:,-1].values # {se pueden modificar segun se necesite}
+y = dataset.iloc[:,-1].values
 
-# Nota: convertir a matrices tanto a X como a y para evitar problemas
-#       al no usar matrices.
-
+# Nota: convertir a matrices tanto a X como a y para evitar errores
 # =============================================================================
 # --------------------Dividiendo dataset en conjuntos--------------------
 # --------------------de entrenamiento y conjunto de testings--------------------
@@ -81,8 +66,6 @@ classifier.fit(X_train,y_train)
 # =============================================================================
 
 y_pred=classifier.predict(X_test)
-
-
 
 # =============================================================================
 # Elaborar una Matriz de confusion

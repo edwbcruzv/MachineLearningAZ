@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Date: Wed Feb 22 22:39:14 2023
-
-@author: edwin
-"""
 
 # =============================================================================
 # Plantilla de Clasificacion
@@ -17,12 +12,6 @@ import pandas as pd
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
 
 dataset = pd.read_csv('dataset.csv') # {buscar el dataset}
 

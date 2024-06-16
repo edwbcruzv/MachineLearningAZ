@@ -1,11 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Aug 23 13:43:32 2023
-
-@author: cruz
-"""
-
 # =============================================================================
 # Plantilla de Clasificacion Naive Bayes
 # =============================================================================
@@ -19,24 +13,15 @@ import pandas as pd
 # --------------------Importando dataset--------------------
 # =============================================================================
 
-# Estructura de los datos: {explicar eldataset y el objetivo}.
-# Filas :{numero de filas}
-# Columnas:
-#           |{col1}|{col2}|{...} (vars independiente)
-#           |{columna de var indep.}| (var_dependiente)
-
-dataset = pd.read_csv('Social_Network_Ads.csv') # {buscar el dataset}
+dataset = pd.read_csv('Social_Network_Ads.csv')
 
 # Variable independiente:Mayuscula por ser una matriz.
-#   tomamos [Todas las filas ,Solo la columna(s)...]
-X = dataset.iloc[:,2:4].values # {se pueden modificar segun se necesite}
+X = dataset.iloc[:,2:4].values
 
 # Variable dependiente:minuscula por ser un vector.
-#   tomamos [Todas las filas: Solo la ultima columna]
-y = dataset.iloc[:,-1].values # {se pueden modificar segun se necesite}
+y = dataset.iloc[:,-1].values
 
-# Nota: convertir a matrices tanto a X como a y para evitar problemas
-#       al no usar matrices.
+# Nota: convertir a matrices tanto a X como a y para evitar errores
 # =============================================================================
 # --------------------Tratamiendo de NAs--------------------
 # =============================================================================
@@ -62,7 +47,7 @@ from sklearn.model_selection import train_test_split
 #           matridependiente a predecir,
 #           tamaño del conjunto de testing en % (el resto se va a entrenamiento),
 #           numero random de division de datos (semilla random=cualquier numero).
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25,random_state=1)
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.25,random_state=0)
 
 # =============================================================================
 # --------------------Escalado de variables--------------------

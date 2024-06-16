@@ -5,19 +5,12 @@
 # =============================================================================
 # --------------------Importando dataset--------------------
 # =============================================================================
-# Estructura de los datos:tipos de empleados y el nivel 
-# de cada tipo de empleado y el salario correspondiente.
-# Objetivo: asignar un salario correspondientes a un nivel y su posicion dada.
-# Filas :10
-# Columnas:
-#           |Position|Level| (vars independiente)
-#           |salary| (var_dependiente)
 dataset = read.csv('Position_Salaries.csv')
 dataset = dataset[,2:3]
 # =============================================================================
 # Ajustar la SVR con el dataset
 # =============================================================================
-# crear nuestra variable de regresion aqui
+# install.packages("e1071") # solo se necesita ejecutar una vez
 # library(e1071)
 svr_regressor=svm(x = dataset$Level,y = dataset$Salary,kernel='radial')
 summary(svr_regressor)
